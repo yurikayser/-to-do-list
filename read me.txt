@@ -1,0 +1,11 @@
+--To-Do List--
+
+To run this project you should open your terminal/cmd and go to the project folder. Then, run the following command:
+
+node rest.js
+
+Then, open the index.html file.
+
+_______________________________________________________________________________________________________________________
+
+This to-do list is capable of create, edit and remove tasks. Also, all tasks are stored in a Json file.

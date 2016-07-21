@@ -1,0 +1,42 @@
+.container-full {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 100%;
+}
+			
+.form-horizontal label.control-label {
+	text-align: left;	
+}
+			
+.button-custom{
+    color: #000;
+	text-shadow: 0 1px 0 #fff;
+	filter: alpha(opacity=20);
+	opacity: .2;
+}
+			
+.button-custom:hover{
+	cursor: pointer;
+    filter: alpha(opacity=50);
+	opacity: .5;
+}
+			
+.title-icons{
+	text-align: right;
+}
+			
+.custom-label{
+	text-align: center;
+}
+			
+.header-custom{
+	margin-top: 0px;
+}
+
+.panel-custom{
+	text-align: center;
+}
+
+body{
+	background-color: #F5F5F5;
+}

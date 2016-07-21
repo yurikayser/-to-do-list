@@ -1,0 +1,166 @@
+<html ng-app="tdmodule">
+	<head >
+		<script src="assets/js/angular.min.js"></script>
+		<script type="text/javascript" src="Controllers/todo_list_module.js"></script>
+		<link rel="stylesheet" href="assets/style/bootstrap.min.css">
+		<script src="assets/js/jquery-2.2.4.min.js"></script>
+		<script src="assets/js/bootstrap.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="assets/style/style.css">
+
+	</head>
+
+	<body ng-controller="tdcontroller">
+
+		<!-- Principal Container-->
+		<div class="container container-full">
+		
+			<!--header-->
+			<div class="page-header header-custom">
+  				<h1>To-Do List <small>Yuri Kayser</small></h1>
+			</div>
+			
+			<!--columns taks, done and to-do-->
+			<div class="row">
+				<!--Task column-->
+				<div class="col-lg-4">
+					<div class="panel panel-info">
+		  				<!--Column Title-->
+		  				<div class="panel-heading panel-custom">
+		    				<h3 class="panel-title">Tasks</h3>
+		  				</div>
+		  				
+		  				<div class="panel-body">
+		    				<!--form-->
+		    				<form class="form-horizontal" name="taskForm" id="taskForm" novalidate>
+					    		<!--title field-->
+					    		<div class="form-group">
+									<label for="title" class="col-sm-2 control-label">Title</label>
+								    <div class="col-sm-10">
+								      <input type="text" name="title" class="form-control" ng-model="task.title" required>
+								    </div>
+								</div>
+
+								<!--date field-->
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label label-custom">Date</label>
+								    <div class="col-sm-10">
+								      <input type="date" name = "date" class="form-control" ng-model="task.date" required>
+								    </div>
+								</div>
+
+								<!--hour label-->
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label label-custom">Hour</label>
+								    <div class="col-sm-10">
+								      <input type="time" name="hour" class="form-control" ng-model="task.hour" required>
+								    </div>
+								</div>
+
+								<!--status field-->
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label label-custom">Status</label>
+								    <div class="col-sm-10">
+									    <select name="status" class="form-control" ng-model="task.status" required>
+											<option value="To-Do">To-Do</option>
+											<option value="Done">Done</option>
+										</select>
+								    </div>
+								</div>
+								<!--description field-->
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label label-custom">Description</label>
+									    <div class="col-sm-10">
+									      <textarea name="description" class="form-control" rows="3" ng-model="task.description" required></textarea>
+									    </div>
+								</div>
+
+								<button type="submit" class="btn btn-primary" ng-click="createTask()" ng-if="createmode">Create</button>
+								<button type="submit" class="btn btn-primary" ng-click="saveEdit()" ng-if="editmode">Save</button>
+
+
+							</form>
+		    			</div>
+	  				</div>
+				</div>
+
+				<!-- To-Do Columns--> 
+				<div class="col-lg-4">
+					<div class="panel panel-primary">
+		  				<div class="panel-heading panel-custom">
+		    				<h3 class="panel-title">To Do</h3>
+		  				</div>
+		  				<div class="panel-body" >
+		  					<div ng-repeat="t in tasks | filter: { status: 'To-Do' }">
+			  					<!--card-->
+			    				<div class="panel panel-primary card" id="{{t.id}}">
+									<!--title-->
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-xs-10">
+									    		<h3 class="panel-title">{{t.title}}</h3>
+											</div>
+											<!--icons-->
+											<div class="col-xs-2 title-icons">
+												<span class="glyphicon glyphicon-edit button-custom edit" aria-hidden="true" ng-click="editSelected()"></span>
+												<span class="glyphicon glyphicon-remove button-custom remove" aria-hidden="true" ng-click="remove()"></span>
+											</div>
+										</div>
+								  	</div>
+									
+								 	<div class="panel-body">
+										<div>
+								 			{{t.description}}
+								 		</div>
+								 		<div class="custom-label">
+									 		<span class="label label-primary">{{t.date}}</span>
+									 		<span class="label label-primary">{{t.hour}}</span>
+								 		</div>
+								  	</div>
+								</div>
+							</div>
+							<!--end of the card-->
+		    			</div>
+	  				</div>
+				</div>
+
+				<!-- Done Column-->
+				<div class="col-lg-4">
+					<div class="panel panel-success">
+		  				<div class="panel-heading panel-custom">
+		    				<h3 class="panel-title">Done</h3>
+		  				</div>
+		  				
+		  				<div class="panel-body">
+		    				<div ng-repeat="t in tasks | filter: { status: 'Done' }">
+			    				<!--card-->
+			    				<div class="panel panel-success" id="{{t.id}}">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-xs-10">
+									    		<h3 class="panel-title">{{t.title}}</h3>
+											</div>
+											
+											<div class="col-xs-2 title-icons">
+												<span class="glyphicon glyphicon-edit button-custom edit" aria-hidden="true" ng-click="editSelected()"></span>
+												<span class="glyphicon glyphicon-remove button-custom remove" aria-hidden="true" ng-click="remove()"></span>
+											</div>
+										</div>
+								  	</div>
+								 	<div class="panel-body">
+										<div>
+								 			{{t.description}}
+								 		</div>
+								 		<div class="custom-label">
+									 		<span class="label label-success">{{t.date}}</span>
+									 		<span class="label label-success">{{t.hour}}</span>
+								 		</div>
+								  	</div>
+								</div>
+							</div>
+		    			</div>
+	  				</div>
+				</div>
+			</div>
+		</div>	
+	</body>
+</html>
